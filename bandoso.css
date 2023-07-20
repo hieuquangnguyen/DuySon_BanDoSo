@@ -1,0 +1,77 @@
+/* bandoso.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Ngăn kéo sang ngang */
+}
+
+html {
+    overflow-x: hidden; /* Ngăn kéo sang ngang */
+}
+
+header {
+    background-color: #b5e2fa;
+    color: #184e77;
+    padding: 10px;
+    text-align: center;
+}
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background-color: #eff7f6;
+}
+
+#left {
+    flex: 1;
+    min-width: 300px;
+}
+
+#right {
+    flex: 2;
+}
+
+/* bandomap.css */
+
+#legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.legend-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+#map {
+    width: 100%;
+    height: 480px;
+}
+
+
+/* Thêm media query để điều chỉnh thiết lập cho màn hình nhỏ */
+@media only screen and (max-width: 768px) {
+    #right {
+        flex: unset; /* Bỏ giới hạn flex cho phần bên phải */
+        width: 100%; /* Đảm bảo phần bên phải chiếm hết chiều ngang */
+    }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bandoso.css">
+    <title>Bản Đồ Số - Xã Duy Sơn</title>
+    <link rel="icon" href="./treasure-map.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>BẢN ĐỒ SỐ - XÃ DUY SƠN</h1>
+    </header>
+
+    <div id="content">
+        <div id="left">
+            <h2>Chú thích</h2>
+            <h5 style="color: red;">* Phần biên giới của xã Duy Sơn trên trang này không hoàn toàn chính xác 100%*</h5>
+            <!-- Thêm phần chú thích -->
+            <div id="legend">
+                <!-- Thêm các chú thích của bạn ở đây -->
+                <div class="legend-item" onclick="goToLocation(15.82457, 108.22634)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(165,29,30);"></i>
+                    <span> Bảo Tàng Văn Hóa Sa Huỳnh</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.73313, 108.15443)">
+                    <i class="fas fa-map-marker-alt" style="color:RGB(245,124,0)"></i>
+                    <span>Di Tích Hòn Tàu</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.82295, 108.22441)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(26,35,126)"></i>
+                    <span>Hòn Bằng</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.78948, 108.224)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(136,14,79)"></i>
+                    <span>Thủy Điện Duy Sơn</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.79306, 108.2248)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(156,39,76)"></i>
+                    <span>Lăng Mộ Nguyễn Phúc Kỳ</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.82309, 108.23499)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(129,119,23)"></i>
+                    <span>Lăng Mộ Mạc Cảnh Huống</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.80658, 108.22693)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(175,180,43)"></i>
+                    <span>Miếu Bà Hương</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.82334, 108.23668)">
+                    <i class="fas fa-map-marker-alt" style="color: black"></i>
+                    <span>Nhà Thờ Ngũ Xã Trà Kiệu</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.81028, 108.22266)">
+                    <i class="fas fa-map-marker-alt" style="color: yellow"></i>
+                    <span>Phế Tích Tháp Dương Bi</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.82465, 108.23271)">
+                    <i class="fas fa-map-marker-alt" style="color: rgb(154, 21, 21)"></i>
+                    <span>TT Thánh Mẫu Trà Kiệu</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.80645, 108.21167)">
+                    <i class="fas fa-map-marker-alt" style="color: RGB(249,168,37)"></i>
+                    <span>Đình Làng Phú Nham Đông</span>
+                </div>
+                <div class="legend-item" onclick="goToLocation(15.77354, 108.16681)">
+                    <i class="fas fa-map-marker-alt" style="color: green"></i>
+                    <span>Đồng Sen Trà Lý</span>
+                </div>
+                <!-- Thêm các chú thích khác của bạn ở đây -->
+
+            </div>
+        </div>
+
+        <div id="right">
+            <h2>Bản đồ</h2>
+            <!-- Nhúng iframe của Google Map vào đây -->
+            <iframe id="map" src="https://www.google.com/maps/d/embed?mid=1Uu2ibtAQSsnTnTUHm4FfqwdzlNWYbLM&ehbc=2E312F"
+                width="640" height="480"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function goToLocation(latitude, longitude) {
+            var mapFrame = document.getElementById('map');
+            var mapURL = "https://www.google.com/maps/d/embed?mid=1Uu2ibtAQSsnTnTUHm4FfqwdzlNWYbLM&ehbc=2E312F";
+            mapFrame.src = mapURL + "&ll=" + latitude + "," + longitude;
+        }
+    </script>
+
+</body>
+
+</html>
