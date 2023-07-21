@@ -12,6 +12,13 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 10px;
+
+}
+.videomp4 {
+  width: 100%;
+  max-width: 100%; /* Ensures the video doesn't exceed the container's width */
+  height: auto;    /* Maintain aspect ratio when resizing */
+  object-fit: contain; /* This property will fit the video inside the container while preserving its aspect ratio */
 }
 
 header {
@@ -83,7 +90,28 @@ header h1 {
 .read-button i {
   margin-right: 5px;
 }
-
+.pause-button{
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.continue-button{
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
 .content-section {
   background-color: #fff;
   padding: 20px;
@@ -162,4 +190,10 @@ header h1 {
     margin-top: 10px; /* Add margin to separate the button from the content on small screens */
   }
 }
+}
+/* Additional styling for responsiveness (optional) */
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 90%; /* Adjust the container's maximum width for smaller screens */
+  }
 }

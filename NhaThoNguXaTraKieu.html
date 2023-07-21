@@ -124,72 +124,13 @@
         </div>
     </section>
 
-    <script>
-        // Lấy các nút đọc, tạm dừng và tiếp tục
-        const readButton = document.querySelector('.read-button');
-        const pauseButton = document.querySelector('.pause-button');
-        const continueButton = document.querySelector('.continue-button');
+    <!-- Thêm thẻ audio để nhúng file âm thanh MP3 -->
+    <audio id="audioPlayer" controls style="display: none;">
+        <source src="./nguXaTraKieu.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-        let isReading = false;
-        let currentUtterance;
-        let currentIndex = 0;
-
-        // Hàm để đọc đoạn văn bản từ vị trí hiện tại
-        function readText() {
-            if (!isReading) {
-                readButton.style.display = 'none';
-                pauseButton.style.display = 'block';
-                currentIndex = 0;
-                if ('speechSynthesis' in window) {
-                    currentUtterance = new SpeechSynthesisUtterance(document.querySelector('.content-item.text p').textContent);
-                    currentUtterance.onboundary = (event) => {
-                        currentIndex = event.charIndex;
-                    };
-                    currentUtterance.onend = () => {
-                        isReading = false;
-                        readButton.style.display = 'block';
-                        pauseButton.style.display = 'none';
-                        continueButton.style.display = 'none';
-                        currentIndex = 0;
-                    };
-                    speechSynthesis.speak(currentUtterance);
-                    isReading = true;
-                } else {
-                    alert('Trình duyệt của bạn không hỗ trợ Web Speech API. Hãy thử trình duyệt khác.');
-                }
-            } else {
-                pauseButton.style.display = 'none';
-                continueButton.style.display = 'block';
-                speechSynthesis.pause();
-                isReading = false;
-            }
-        }
-
-        // Hàm để tiếp tục đọc từ vị trí dừng trước đó
-        function continueText() {
-            if (!isReading) {
-                pauseButton.style.display = 'block';
-                continueButton.style.display = 'none';
-                speechSynthesis.resume();
-                isReading = true;
-            }
-        }
-
-        // Hàm để tạm dừng đọc
-        function pauseText() {
-            if (isReading) {
-                pauseButton.style.display = 'none';
-                continueButton.style.display = 'block';
-                speechSynthesis.pause();
-                isReading = false;
-            }
-        }
-
-        // Bắt sự kiện click các nút để thực thi các hàm tương ứng
-        readButton.addEventListener('click', readText);
-        pauseButton.addEventListener('click', pauseText);
-        continueButton.addEventListener('click', continueText);
-    </script>
+   
 
 </body>
 
