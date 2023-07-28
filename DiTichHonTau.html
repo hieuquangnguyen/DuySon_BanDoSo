@@ -234,6 +234,26 @@
       readButton.addEventListener("click", playAudio);
       pauseButton.addEventListener("click", pauseAudio);
       continueButton.addEventListener("click", continueAudio);
+
+      // Function to pause the audio if it is currently playing
+      function pauseAudioIfPlaying() {
+        if (isPlaying) {
+          pauseButton.style.display = "none";
+          continueButton.style.display = "block"; // Show the "Continue" button instead of "Pause"
+          audioPlayer.pause();
+          isPlaying = false;
+        }
+      }
+      // Event listener for the back button
+      const backButton = document.querySelector(".back-button");
+      backButton.addEventListener("click", () => {
+        pauseAudioIfPlaying();
+      });
+
+      // Event listener for when the user leaves the page
+      window.addEventListener("beforeunload", () => {
+        pauseAudioIfPlaying();
+      });
     </script>
   </body>
 </html>

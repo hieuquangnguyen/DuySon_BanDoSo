@@ -125,70 +125,76 @@
 
     <script>
         // Lấy các nút đọc, tạm dừng và tiếp tục
-        const readButton = document.querySelector('.read-button');
-        const pauseButton = document.querySelector('.pause-button');
-        const continueButton = document.querySelector('.continue-button');
-
-        let isReading = false;
-        let currentUtterance;
-        let currentIndex = 0;
-
-        // Hàm để đọc đoạn văn bản từ vị trí hiện tại
-        function readText() {
-            if (!isReading) {
-                readButton.style.display = 'none';
-                pauseButton.style.display = 'block';
-                currentIndex = 0;
-                if ('speechSynthesis' in window) {
-                    currentUtterance = new SpeechSynthesisUtterance(document.querySelector('.content-item.text p').textContent);
-                    currentUtterance.onboundary = (event) => {
-                        currentIndex = event.charIndex;
-                    };
-                    currentUtterance.onend = () => {
-                        isReading = false;
-                        readButton.style.display = 'block';
-                        pauseButton.style.display = 'none';
-                        continueButton.style.display = 'none';
-                        currentIndex = 0;
-                    };
-                    speechSynthesis.speak(currentUtterance);
-                    isReading = true;
-                } else {
-                    alert('Trình duyệt của bạn không hỗ trợ Web Speech API. Hãy thử trình duyệt khác.');
-                }
-            } else {
-                pauseButton.style.display = 'none';
-                continueButton.style.display = 'block';
-                speechSynthesis.pause();
-                isReading = false;
-            }
+        const readButton = document.querySelector(".read-button");
+        const pauseButton = document.querySelector(".pause-button");
+        const continueButton = document.querySelector(".continue-button");
+  
+        let isPlaying = false;
+        let audioPlayer = document.getElementById("audioPlayer");
+  
+        // Hàm để chơi âm thanh từ vị trí hiện tại
+        function playAudio() {
+          if (!isPlaying) {
+            readButton.style.display = "none";
+            pauseButton.style.display = "block";
+            continueButton.style.display = "none"; // Ẩn nút "Tiếp Tục"
+            audioPlayer.currentTime = 0; // Chạy từ đầu
+            audioPlayer.play();
+            isPlaying = true;
+          } else {
+            pauseButton.style.display = "block";
+            continueButton.style.display = "none"; // Ẩn nút "Tiếp Tục"
+            audioPlayer.pause();
+            isPlaying = false;
+          }
         }
-
-        // Hàm để tiếp tục đọc từ vị trí dừng trước đó
-        function continueText() {
-            if (!isReading) {
-                pauseButton.style.display = 'block';
-                continueButton.style.display = 'none';
-                speechSynthesis.resume();
-                isReading = true;
-            }
+  
+        // Hàm để tiếp tục chơi âm thanh từ vị trí dừng trước đó
+        function continueAudio() {
+          if (!isPlaying) {
+            readButton.style.display = "none";
+            pauseButton.style.display = "block";
+            continueButton.style.display = "none"; // Ẩn nút "Tiếp Tục"
+            audioPlayer.play();
+            isPlaying = true;
+          }
         }
-
-        // Hàm để tạm dừng đọc
-        function pauseText() {
-            if (isReading) {
-                pauseButton.style.display = 'none';
-                continueButton.style.display = 'block';
-                speechSynthesis.pause();
-                isReading = false;
-            }
+  
+        // Hàm để tạm dừng âm thanh
+        function pauseAudio() {
+          if (isPlaying) {
+            pauseButton.style.display = "none";
+            continueButton.style.display = "block"; // Hiển thị nút "Tiếp Tục" thay vì "Tạm Dừng"
+            audioPlayer.pause();
+            isPlaying = false;
+          }
         }
-
+  
         // Bắt sự kiện click các nút để thực thi các hàm tương ứng
-        readButton.addEventListener('click', readText);
-        pauseButton.addEventListener('click', pauseText);
-        continueButton.addEventListener('click', continueText);
-    </script>
+        readButton.addEventListener("click", playAudio);
+        pauseButton.addEventListener("click", pauseAudio);
+        continueButton.addEventListener("click", continueAudio);
+  
+        // Function to pause the audio if it is currently playing
+        function pauseAudioIfPlaying() {
+          if (isPlaying) {
+            pauseButton.style.display = "none";
+            continueButton.style.display = "block"; // Show the "Continue" button instead of "Pause"
+            audioPlayer.pause();
+            isPlaying = false;
+          }
+        }
+        // Event listener for the back button
+        const backButton = document.querySelector(".back-button");
+        backButton.addEventListener("click", () => {
+          pauseAudioIfPlaying();
+        });
+  
+        // Event listener for when the user leaves the page
+        window.addEventListener("beforeunload", () => {
+          pauseAudioIfPlaying();
+        });
+      </script>
 
 </body>
 
