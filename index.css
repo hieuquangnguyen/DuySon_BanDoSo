@@ -79,3 +79,9 @@ body {
 .button:hover {
   background-color: #e0b5b5;
 }
+
+@media screen and (max-width: 768px) {
+  .tienphongcds {
+    font-size: 27px;
+  }
+}
